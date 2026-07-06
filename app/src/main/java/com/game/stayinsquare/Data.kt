@@ -3,7 +3,6 @@ package com.game.stayinsquare
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 
 enum class Direction {
@@ -13,7 +12,6 @@ enum class Direction {
 data class GameObject(
     val id: String,
     val size: Float,
-    val color: Color,
     var direction: Direction = Direction.EAST,
     var X: Float,
     var Y: Float,
@@ -73,17 +71,20 @@ data class GameObject(
 }
 
 class GameViewModel : ViewModel() {
+    var frameCount by mutableLongStateOf(0L)
+        private set
+
     val dot = GameObject(
-        "dot", 20f, Color.DarkGray, Direction.EAST, 600f, 400f, 0f, 0f
+        "dot", 20f, Direction.EAST, 300f, 200f, 0f, 0f
     )
     val square = GameObject(
-        "boX", 400f, Color.LightGray, Direction.EAST, 100f, 100f, 1f, 1f
+        "square", 400f, Direction.EAST, 100f, 100f, 1f, 1f
     )
     var elapsedMS by mutableLongStateOf(0L)
-
     fun update(deltaMS: Long, screenHeight: Float, screenWidth: Float) {
         dot.update(screenHeight, screenWidth)
         square.update(screenHeight, screenWidth)
         elapsedMS += deltaMS
+        frameCount++
     }
 }
