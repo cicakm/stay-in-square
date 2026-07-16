@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameScreen() {
-//    var isRunning by remember { mutableStateOf(false) }
     val viewModel = GameViewModel()
 
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
