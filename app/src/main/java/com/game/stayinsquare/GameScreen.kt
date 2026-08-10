@@ -133,6 +133,9 @@ fun MyScreen(
             drawRect(
                 color = dotColor, topLeft = Offset(obj.X, obj.Y), size = Size(obj.size, obj.size)
             )
+            obj.trail.forEachIndexed { i, pos ->
+                drawRect(color = dotColor.copy(alpha = i / 10f), topLeft = pos, size = Size(obj.size, obj.size))
+            }
         }
     }
 

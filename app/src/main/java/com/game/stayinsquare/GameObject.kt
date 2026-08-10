@@ -1,5 +1,7 @@
 package com.game.stayinsquare
 
+import androidx.compose.ui.geometry.Offset
+
 data class GameObject(
     val id: String,
     val size: Float,
@@ -7,9 +9,12 @@ data class GameObject(
     var X: Float,
     var Y: Float,
     var vX: Float,
-    var vY: Float
+    var vY: Float,
+    val trail: ArrayDeque<Offset> = ArrayDeque(10)
 ) {
     fun update(screenWidth: Float, screenHeight: Float) {
+        trail.addLast(Offset(X, Y))
+        if (trail.size > 10) trail.removeFirst()
         X += vX
         Y += vY
 
