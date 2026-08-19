@@ -55,5 +55,6 @@ class GameViewModel : ViewModel() {
         elapsedMS = 0L
         frameCount = 0L
         isRunning = false
+        dot.trail.clear()
     }
 }

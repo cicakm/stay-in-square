@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -125,7 +126,13 @@ fun MyScreen(
 
         viewModel.square.let { obj ->
             drawRect(
-                color = squareColor, topLeft = Offset(obj.X, obj.Y), size = Size(obj.size, obj.size)
+                color = squareColor,
+                topLeft = Offset(obj.X, obj.Y),
+                size = Size(obj.size, obj.size),
+                colorFilter = ColorFilter.lighting(
+                    Color.Red,
+                    Color.Green
+                )
             )
         }
 
@@ -134,7 +141,11 @@ fun MyScreen(
                 color = dotColor, topLeft = Offset(obj.X, obj.Y), size = Size(obj.size, obj.size)
             )
             obj.trail.forEachIndexed { i, pos ->
-                drawRect(color = dotColor.copy(alpha = i / 10f), topLeft = pos, size = Size(obj.size, obj.size))
+                drawRect(
+                    color = dotColor.copy(alpha = i / 10f),
+                    topLeft = pos,
+                    size = Size(obj.size, obj.size)
+                )
             }
         }
     }
